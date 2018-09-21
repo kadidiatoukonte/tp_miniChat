@@ -22,15 +22,26 @@
   <![endif]-->
 
   <!-- Add your site or application content here -->
+  <?php
+  include 'config.php';
+  ?>
+<?php
+  $request =$bdd->query('SELECT * FROM minichat ORDER BY id DESC LIMIT 0,10');
+  while ($donnees = $request->fetch()){
+ ?>
+     <p><strong><?php echo $donnees['pseudo']; ?></strong> : <?php echo $donnees['message']; ?></p>
+ <?php
 
+  }
+  $request->closeCursor();
+?>
 <form class="" action="mini_chat_post.php" method="post">
   <label for="pseudo">Pseudo:</label>
-  <input type="text" name="peusdo" value=""><br>
+  <input type="text" name="pseudo" value=""><br>
   <label for="message">Message:</label>
   <input type="text" name="message" value=""><br>
   <input class="center" type="submit" name="envoyer" value="Envoyer">
 </form>
-
 
 
 
